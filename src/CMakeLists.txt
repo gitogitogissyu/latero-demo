@@ -17,5 +17,13 @@ set(studio_SRCS
     drawing.cpp)
 
 add_executable(latero-studio ${studio_SRCS})
+
+#dependent on OS
+if(APPLE)
 target_link_libraries(latero-studio "-framework Foundation" ${LATERO_GRAPHICS_LIBRARIES} boost_program_options-mt audiere)
+else(APPLE)
+target_link_libraries(latero-studio  ${LATERO_GRAPHICS_LIBRARIES} boost_program_options audiere)
+endif(APPLE)
+
+
 install_programs(/bin latero-studio)
